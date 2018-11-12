@@ -32,6 +32,25 @@ class DocsManager:
         self.listEditor.set_column('C', 2, list(map(lambda x: x["cleans"], rows)))
         # self.listEditor.set_column('D', 2, map(lambda x: x["email"], rows))
 
+    def get_swappers(self):
+        """"
+        return [(swappers_pair1 (tuple), mode), (swappers_pair2 (tuple), mode) ... ]
+        """
+
+    def get_scheule(self):
+        """"
+        return the same format I send to you marg
+        """
+
+    def clear_swappers(self):
+        """
+        void, just delete the swappers form
+        """
+
+    """
+    Something that updates the how much everyone did
+    """
+
     def get_list(self):
         rows = self.listEditor.get_rows('A2', 'J53')
         result = []
