@@ -13,11 +13,11 @@ class SheetEditor:
     sheet = ""
 
     def __init__(self, spreadsheet):
-        store = file.Storage('CleaningBot\\Docs\\token.json')
+        store = file.Storage('Docs\\token.json')
         #  store = file.Storage('token.json')
         creds = store.get()
         if not creds or creds.invalid:
-            flow = client.flow_from_clientsecrets('CleaningBot\\Docs\\credentials.json', SCOPES)
+            flow = client.flow_from_clientsecrets('Docs\\credentials.json', SCOPES)
             #  flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
             creds = tools.run_flow(flow, store)
 
