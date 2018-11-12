@@ -9,7 +9,7 @@ INF = 1000
 class Manager:
 
     SHIFT_CLEANERS = 4
-    MORNING_CLEANERS = SHIFT_CLEANERS * 5
+    MORNING_CLEANERS = SHIFT_CLEANERS * 4
     EVENING_CLEANERS = SHIFT_CLEANERS * 5
     WEEKLY_CLEANERS = MORNING_CLEANERS + EVENING_CLEANERS
 
@@ -63,12 +63,15 @@ class Manager:
                 morning_cleaners.append(cleaner)
 
         # Split into days
-        weekly_cleaners = []
+        weekly_cleaners = []        
         for cleaner_type in (morning_cleaners, evening_cleaners):
             weekly_cleaners.append([
                 cleaner_type[i:i+Manager.SHIFT_CLEANERS]
                 for i in range(0, len(cleaner_type), Manager.SHIFT_CLEANERS)
             ])
+            
+        # No cleaners on monday
+        weekly_cleaners[0] = [[]] + weekly_cleaners[0]
 
         # return the weekly cleaners
         return weekly_cleaners
