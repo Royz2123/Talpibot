@@ -97,7 +97,7 @@ class Manager:
 
 def main():
     # create cleaning manager
-    cleaning_manager = Manager(2)
+    cleaning_manager = Manager(6)
 
     # create the cleaning schedule for the upcoming week
     cleaning_manager.create_week()

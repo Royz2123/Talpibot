@@ -4,7 +4,7 @@
 __author__ = 'shay@inbar.co.il'
 
 import datetime
-from CleaningBot.Docs.SheetEditor import SheetEditor
+from Docs.SheetEditor import SheetEditor
 
 # The ID and range of a sample spreadsheet.
 DUTY_SPREADSHEET_ID = '1eP3P_90DzUbl8VVcNahi9ZJ2NMZ9FDvoP5ygcaqmpqE'
