@@ -6,9 +6,9 @@ from oauth2client import file, client, tools
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar'
-DUTY_TITLE = 'תורנות דו"ח 1"'
+DUTY_TITLE = 'תורנות דו"ח 1'
 DUTY_LOCATION = 'קומות מחזור מ'
-DESCRIPTION = '!תורנות דו"ח 1 מרגשת במיוחד - לך תוודא את המחזור'
+DESCRIPTION = 'תורנות דו"ח 1 מרגשת במיוחד - לך תוודא את המחזור! באהבה - תואר וצוות סייברלוז'
 TIME_ZONE = 'Asia/Jerusalem'
 
 class CalManager:
@@ -52,7 +52,7 @@ class CalManager:
                 'dateTime': date + time2,
                 'timeZone': TIME_ZONE,
             },
-            'attendees' : final_attendees,
+            'attendees' : [formatted_attendee],
             'reminders': {
                 'useDefault': False,
                 'overrides': [
@@ -60,15 +60,8 @@ class CalManager:
                     {'method': 'popup', 'minutes': 10},
                 ],
             },
-
-
         }
         event = self.service.events().insert(calendarId=calender, body=event).execute()
-
-    def __add_days(self, date, number):
-        end_date = date + datetime.timedelta(days=number)
-        end_date = end_date.strftime('%y-%m-%d')
-        return end_date
 
     def __search_calendar(self):
         page_token = None
