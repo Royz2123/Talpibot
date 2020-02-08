@@ -4,12 +4,18 @@ from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
 
+import time
+
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/calendar'
 DUTY_TITLE = 'תורנות דו"ח 1'
 DUTY_LOCATION = 'קומות מחזור מ'
-DESCRIPTION = 'תורנות דו"ח 1 מרגשת במיוחד - לך תוודא את המחזור! באהבה - תואר וצוות סייברלוז'
+DESCRIPTION = 'תורנות דו"ח 1 מרגשת במיוחד - לך תוודא את המחזור! באהבה - צוות סייברלוז'
 TIME_ZONE = 'Asia/Jerusalem'
+
+
+# If had an error while running, change and start from error date
+ERROR_DATE = "30/03/2020"
 
 class CalManager:
 
@@ -82,7 +88,14 @@ class CalManager:
             
         for index, duty in enumerate(duty_list):
             date = self.create_date(duty["date"]).strftime('%y-%m-%d')
-            self.__new_event(cal_id, duty, date)
+            
+            if self.create_date(duty["date"]) > datetime.datetime.strptime(ERROR_DATE, "%d/%m/%Y").date():
+                # No rate errors on my watch
+                time.sleep(3)
+
+                self.__new_event(cal_id, duty, date)
+            else:
+                print("Date: %s is before Error Date: %s" % (date, ERROR_DATE))
             
     def create_date(self, str_date):
         return datetime.datetime.strptime(str_date, "%d/%m/%Y").date()

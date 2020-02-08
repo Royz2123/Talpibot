@@ -27,21 +27,24 @@ class DocsManager:
     """
 
     def get_doch_list(self):
-        rows = self.dochEditor.get_rows('A9', 'J59')
+        rows = self.dochEditor.get_rows('A9', 'D56')
         email_dict = self.get_email_dict()
                 
         result = []
 
         for col_index in range(2):
             for row in rows:
-                name = row[2 * col_index]
-                date = row[2 * col_index + 1]
-            
-                result.append({
-                    "name": name,
-                    "email": email_dict[name],
-                    "date": date
-                })
+                try:
+                    name = row[2 * col_index]
+                    date = row[2 * col_index + 1]
+
+                    result.append({
+                        "name": name,
+                        "email": email_dict[name],
+                        "date": date
+                    })
+                except:
+                    pass
 
         return result
         
